@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Bundix
   class Fetcher
     def sh(*args, &block)
@@ -20,7 +22,7 @@ class Bundix
       end
 
       begin
-        open(uri.to_s, 'r', 0600, open_options) do |net|
+        URI.open(uri.to_s, 'r', 0600, **open_options) do |net|
           File.open(file, 'wb+') { |local|
             File.copy_stream(net, local)
           }
@@ -69,6 +71,7 @@ class Bundix
       ).force_encoding('UTF-8').strip
     rescue => ex
       puts ex
+      puts ex.backtrace
       nil
     end
 
