@@ -19,6 +19,10 @@
         pkgs = import nixpkgs { inherit system; };
         inherit (pkgs) callPackage;
       in {
+        overlays = final: prev: {
+          bundix_bigzed = prev.callPacakge ./default.nix { };
+        };
+
         packages = rec {
           default = bundix;
           bundix = callPackage ./default.nix { };
