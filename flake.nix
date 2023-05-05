@@ -20,7 +20,7 @@
         inherit (pkgs) callPackage;
       in {
         overlays.bundix = final: prev: {
-          bundix_bigzed = prev.callPacakge ./default.nix { };
+          bundix_bigzed = prev.callPackage ./default.nix { };
         };
 
         packages = rec {
